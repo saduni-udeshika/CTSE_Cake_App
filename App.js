@@ -1,8 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { StyleSheet } from "react-native"
-import Home from "./screens/Home";
-import Recipe from "./screens/Recipe";
+import Tabs from "./navigation/Tabs";
 
 const Stack = createStackNavigator()
 
@@ -10,12 +9,7 @@ export default function App() {
 
   return (
     <NavigationContainer style={StyleSheet.container}>
-      <Stack.Navigator 
-      // screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Recipe" component={Recipe} />
-      </Stack.Navigator>
+      <Tabs />
     </NavigationContainer>
   )
 }
