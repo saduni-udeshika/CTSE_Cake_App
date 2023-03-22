@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Keyboard,
   Pressable,
+  Alert,
 } from "react-native"
 import { React, useState, useEffect } from "react"
 import { firebase } from "../config"
@@ -35,17 +36,31 @@ const Recipe = () => {
     })
   }, [])
 
+  //alert box
+  const deleteRecipie = (recipe) => {
+    Alert.alert('Delete Recipe', 'Do you want to delete this Recipe?', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => {recipeDelete(recipe)}},
+    ]);
+  };  
+
   //delete a recipie from firestore dtabase
-  // const deleteRecipie = (recipies) => {
-  //   recipieReference
-  //     .doc(recipies.id)
-  //     .delete()
-  //     .then(() => {
-  //       alert("Deleted recipie Successfully").catch((error) => {
-  //         alert(error)
-  //       })
-  //     })
-  // }
+  const recipeDelete = (recipe) => {
+    recipieReference
+      .doc(recipe.id)
+      .delete()
+      .then(() => {
+        console.log("Deleted recipe successfully")
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }
+  
 
   //add a recipie item
   const addRecipie = () => {
@@ -98,7 +113,7 @@ const Recipe = () => {
               <FontAwesome
                 name="trash-o"
                 color="red"
-                // onPress={() => deleteRecipie(item)}
+                onPress={() => deleteRecipie(item)}
                 style={styles.recipieIcon}
               />
               <View style={styles.innerContainer}>
