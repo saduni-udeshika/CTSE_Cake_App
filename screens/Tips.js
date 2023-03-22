@@ -45,7 +45,14 @@ const Tips = () => {
 
   //delete a tip from firestore dtabase
   const deleteTip = (tips) => {
-   
+    tipReference
+      .doc(tips.id)
+      .delete()
+      .then(() => {
+        alert("Deleted tip Successfully").catch((error) => {
+          alert(error)
+        })
+      })
   }
 
   //add a tip item
