@@ -7,8 +7,8 @@ export class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <Text style={styles.text}>Inside</Text>
+      <ImageBackground source={require("../assets/home.png")} resizeMode="cover" style={styles.image}>
+        <Text style={styles.text}>Caky</Text>
       </ImageBackground>
     </View>
     )
