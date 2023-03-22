@@ -54,7 +54,7 @@ const Recipe = () => {
       .doc(recipe.id)
       .delete()
       .then(() => {
-        console.log("Deleted recipe successfully")
+        alert("Deleted recipe successfully")
       })
       .catch((error) => {
         alert(error)
