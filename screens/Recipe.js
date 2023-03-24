@@ -48,7 +48,7 @@ const Recipe = () => {
     ]);
   };  
 
-  //delete a recipie from firestore dtabase
+  //delete a recipie from firestore database
   const recipeDelete = (recipe) => {
     recipieReference
       .doc(recipe.id)
@@ -108,7 +108,7 @@ const Recipe = () => {
           <View>
             <Pressable
               style={styles.container}
-              onPress={() => navigation.navigate("UpdateRecipe", { item })}
+              onPress={() => navigation.navigate("updateRecipe", { item })}
             >
               <FontAwesome
                 name="trash-o"
