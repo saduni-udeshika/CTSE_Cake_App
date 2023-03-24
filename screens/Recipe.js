@@ -19,7 +19,7 @@ const Recipe = () => {
   //Reference to fetch data from documents called recipies
   const recipieReference = firebase.firestore().collection("recipies")
   const [addData, setAddData] = useState("")
-  // const navigation = useNavigation()
+  const navigation = useNavigation()
 
   //fetch the data from firestore
   useEffect(() => {
@@ -108,7 +108,7 @@ const Recipe = () => {
           <View>
             <Pressable
               style={styles.container}
-              // onPress={() => navigation.navigate("Details", { item })}
+              onPress={() => navigation.navigate("UpdateRecipe", { item })}
             >
               <FontAwesome
                 name="trash-o"
