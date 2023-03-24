@@ -6,6 +6,7 @@ import Recipe from "../screens/Recipe"
 import Shops from "../screens/Shops"
 import Tips from "../screens/Tips"
 
+
 const Tab = createBottomTabNavigator()
 const Tabs = () => {
   return (
