@@ -133,9 +133,6 @@ const Recipe = () => {
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={styles.recipeContainer}>
-        <TouchableOpacity style={styles.selectButton} onPress={pickImage}>
-          <Text style={styles.buttonText}>Pick an Image</Text>
-        </TouchableOpacity>
         <View style={styles.imageContainer}>
           {image && 
             <Image
@@ -143,6 +140,9 @@ const Recipe = () => {
               style={{ width: 100, height: 100 }}
             />
           }
+          <TouchableOpacity style={styles.selectButton} onPress={pickImage}>
+          <Text style={styles.buttonText}>Pick an Image</Text>
+        </TouchableOpacity>
           <TouchableOpacity style={styles.uploadButton} onPress={uploadImage}>
             <Text style={styles.buttonText}>Upload Image</Text>
           </TouchableOpacity>
