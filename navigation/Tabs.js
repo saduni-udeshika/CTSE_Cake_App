@@ -4,7 +4,7 @@ import Events from "../screens/Events"
 import Home from "../screens/Home"
 import Recipe from "../screens/Recipe"
 import ShopList from "../screens/ShopList"
-import Shops from "../screens/Shops"
+import Shop from "../screens/Shop"
 import Tips from "../screens/Tips"
 
 
@@ -118,8 +118,8 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="ShopList"
-        component={ShopList}
+        name="Shop"
+        component={Shop}
         options={{
           tabBarIcon: ({ focused }) => (
             <View

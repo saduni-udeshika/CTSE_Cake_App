@@ -7,7 +7,7 @@ import { firebase } from "../config"
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 const MAX_LENGTH = 250;
-const imageUrl = "https://res.cloudinary.com/dorcq99nr/image/upload/v1679492698/startup_xbr2mu.png";
+const imageUrl = "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.squarespace-cdn.com%2Fcontent%2Fv1%2F59a6d145197aea7e662f1d63%2F1575408891818-Y5AH2JBJUHK771H6RFHO%2FTheShop_gray.png&tbnid=GJHmaK6mYVMwDM&vet=12ahUKEwiYjoDJkvb9AhWHzqACHS2FAOYQMyhPegUIARCTAQ..i&imgrefurl=https%3A%2F%2Fcreativetemplateshop.com%2F&docid=KFzu-fzW_f_GjM&w=1500&h=613&q=shop%20creative&ved=2ahUKEwiYjoDJkvb9AhWHzqACHS2FAOYQMyhPegUIARCTAQ";
 
 const Shops = ({ route }) => {
     const navigation = useNavigation();

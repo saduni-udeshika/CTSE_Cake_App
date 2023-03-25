@@ -7,7 +7,7 @@ import { firebase } from "../config"
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 const MAX_LENGTH = 250;
-const imageUrl = "https://res.cloudinary.com/dorcq99nr/image/upload/v1679492698/startup_xbr2mu.png";
+const imageUrl = "https://img.freepik.com/free-vector/cartoon-desserts-round-composition-with-donuts-pie-pieces-macaroons-cupcakes-muffins-cakes-with-raspberries-blackberries-blueberries-isolated_1284-35138.jpg?w=740&t=st=1679716140~exp=1679716740~hmac=dfda5b139c0917636ea55d508bb88bb06f97f142babfcc08ee611eb954a10fb3";
 
 const Shops = ({ route }) => {
     const navigation = useNavigation();
@@ -54,7 +54,7 @@ const Shops = ({ route }) => {
   return (
     <View  style={styles.body} >
          <ScrollView>
-        <Image  style={styles.image} source={{uri: imageUrl}} />
+         <Text style={styles.pageTitle}>Shops</Text>
       <View style={styles.container}>
         <TextInput
           placeholder="Shop Name"
@@ -93,8 +93,9 @@ const Shops = ({ route }) => {
        <TouchableOpacity style={styles.button} onPress={AddShop}>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
+        <Image  style={styles.image} source={{uri: imageUrl}} />
        </View>
-       
+      
         </ScrollView>
       </View>
   )
@@ -210,11 +211,11 @@ const styles = StyleSheet.create({
   },
   
   image:{
-    width: "75%",
-    height: 239,
+    width: "80%",
+    height: 300,
     marginLeft: 40,
     marginRight: 40,
-    marginTop: 10,
+    marginTop: 5,
   
   },
   
@@ -233,6 +234,14 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
 
+  },
+
+  pageTitle:{
+    fontSize: 35,
+    paddingTop: 50, 
+    paddingLeft:150, 
+    color: "#633974",
+    fontWeight: 'bold',
   }
 
   });

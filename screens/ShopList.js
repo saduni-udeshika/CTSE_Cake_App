@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, FlatList, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
+import { View, TextInput, Button, FlatList, StyleSheet, TouchableOpacity, Text, Alert,ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { firebase } from "../config"
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -64,11 +64,9 @@ const ShopList = ({index}) => {
 
 
   return (
-    <View  >
-          <TouchableOpacity  style={styles.addBtn} onPress={() => navigation.navigate('NewShop')}>
-          <Button title="Add Shop" onPress={() => navigation.navigate('NewShop')} />
-           
-          </TouchableOpacity>
+    <View  style={styles.body}  >
+          <ScrollView>
+         <Text style={styles.pageTitle}>Shop List</Text>
        
     <View style={styles.row}>
       
@@ -112,8 +110,13 @@ const ShopList = ({index}) => {
         keyExtractor={(item) => item.id}
       />
       
+      <TouchableOpacity  style={styles.addBtn} onPress={() => navigation.navigate('NewShop')}>
+          <Button title="Add Shop" onPress={() => navigation.navigate('NewShop')} />
+           
+          </TouchableOpacity>
      
     </View>
+    </ScrollView>
     </View>
   );
 };
@@ -293,6 +296,14 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
   },
+
+  pageTitle:{
+    fontSize: 35,
+    paddingTop: 50, 
+    paddingLeft:130, 
+    color: "#633974",
+    fontWeight: 'bold',
+  }
     });
     
 export default ShopList
