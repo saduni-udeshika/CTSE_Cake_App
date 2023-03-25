@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as ImagePicker from "expo-image-picker"
 
+const MAX_LENGTH = 25;
 const Recipe = () => {
   const [recipies, setRecipies] = useState([])
   const [addData, setAddData] = useState("")
@@ -151,6 +152,7 @@ const Recipe = () => {
         <TextInput
           style={styles.input}
           placeholder="Add your cake name"
+          maxLength={MAX_LENGTH}
           placeholderTextColor="#aaaaaa"
           onChangeText={(heading) => setAddData(heading)}
           value={addData}
