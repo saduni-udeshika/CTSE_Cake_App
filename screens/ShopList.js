@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, FlatList, StyleSheet, TouchableOpacity, Text, Alert,ScrollView } from 'react-native';
+import { View, Image, Button, FlatList, StyleSheet, TouchableOpacity, Text, Alert,ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { firebase } from "../config"
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { FontAwesome } from "@expo/vector-icons"
-let colours = ["#ff8e42", "#4F6384"];
+let colours = ["#ff8e42", "#ffffff"];
 
 const ShopList = ({index}) => {
   const navigation = useNavigation();
@@ -67,6 +67,10 @@ const ShopList = ({index}) => {
     <View  style={styles.body}  >
           <ScrollView>
          <Text style={styles.pageTitle}>Shop List</Text>
+
+         <TouchableOpacity   style={styles.addBtn} onPress={() => navigation.navigate('NewShop')}>
+          <Image  style={styles.addIconImage} source={require("../assets/addIcon.png")} onPress={() => navigation.navigate('NewTip')}/>
+          </TouchableOpacity>
        
     <View style={styles.row}>
       
@@ -96,7 +100,7 @@ const ShopList = ({index}) => {
             <TouchableOpacity >
              
               <FontAwesome
-                name="trash-o"
+                name="pencil"
                 color="green"
                 onPress={() => editShop(item.id)}
                 style={styles.tipIcon}
@@ -110,10 +114,6 @@ const ShopList = ({index}) => {
         keyExtractor={(item) => item.id}
       />
       
-      <TouchableOpacity  style={styles.addBtn} onPress={() => navigation.navigate('NewShop')}>
-          <Button title="Add Shop" onPress={() => navigation.navigate('NewShop')} />
-           
-          </TouchableOpacity>
      
     </View>
     </ScrollView>
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         right: 20,
       },
       addBtn: {
-        backgroundColor: '#007aff',
+        backgroundColor: '#ffffff',
         borderRadius: 40,
         width: 80,
         height: 80,
@@ -187,6 +187,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         flexDirection: "row",
         alignItems: "center",
+        borderColor: '#D8BFD8', 
+        borderWidth: 2,
       },
       innerContainer: {
         alignItems: "center",
@@ -277,6 +279,7 @@ const styles = StyleSheet.create({
     
     body:{
      flex:1,
+     backgroundColor: '#ffffff'
     },
     
 
@@ -303,7 +306,15 @@ const styles = StyleSheet.create({
     paddingLeft:130, 
     color: "#633974",
     fontWeight: 'bold',
-  }
+  },
+  addIconImage:{
+    width:"75%" ,
+    height: 65,
+    marginLeft: 650,
+    marginRight: 10,
+   
+},
+
     });
     
 export default ShopList

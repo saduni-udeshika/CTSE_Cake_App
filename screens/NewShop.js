@@ -81,7 +81,7 @@ const Shops = ({ route }) => {
         <TextInput
           placeholder="Contact Number"
           value={ContactNo}
-          onChangeText={(text) => setshopName(text)}
+          onChangeText={(text) => setContactNo(text)}
           keyboardType= "numeric"
           style={styles.input}
           multiline={true}
