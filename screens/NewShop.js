@@ -7,15 +7,15 @@ import { firebase } from "../config"
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 const MAX_LENGTH = 250;
-const imageUrl = "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.squarespace-cdn.com%2Fcontent%2Fv1%2F59a6d145197aea7e662f1d63%2F1575408891818-Y5AH2JBJUHK771H6RFHO%2FTheShop_gray.png&tbnid=GJHmaK6mYVMwDM&vet=12ahUKEwiYjoDJkvb9AhWHzqACHS2FAOYQMyhPegUIARCTAQ..i&imgrefurl=https%3A%2F%2Fcreativetemplateshop.com%2F&docid=KFzu-fzW_f_GjM&w=1500&h=613&q=shop%20creative&ved=2ahUKEwiYjoDJkvb9AhWHzqACHS2FAOYQMyhPegUIARCTAQ";
+const imageUrl = "https://img.freepik.com/free-vector/cartoon-desserts-round-composition-with-donuts-pie-pieces-macaroons-cupcakes-muffins-cakes-with-raspberries-blackberries-blueberries-isolated_1284-35138.jpg?w=740&t=st=1679716140~exp=1679716740~hmac=dfda5b139c0917636ea55d508bb88bb06f97f142babfcc08ee611eb954a10fb3";
 
 const Shops = ({ route }) => {
     const navigation = useNavigation();
     const [shopName, setshopName] = useState('');
     const [Address, setAddress] = useState('');
     const [ContactNo, setContactNo] = useState('');
+    const [Description, setDescription] = useState('');
     
-
 
     useEffect(() => {
       if (route.params?.id) {
@@ -26,6 +26,7 @@ const Shops = ({ route }) => {
             setshopName(shop.shopName);
             setAddress(shop.Address);
             setContactNo(shop.ContactNo);
+            setDescription(shop.Description);
           });
       }
     }, [route.params?.id]);
@@ -36,12 +37,14 @@ const Shops = ({ route }) => {
           shopName,
           Address,
           ContactNo,
+          Description,
         });
       } else {
         firebase.firestore().collection("shop").add({
           shopName,
           Address,
           ContactNo,
+          Description,
         });
       }
       navigation.goBack();
@@ -54,7 +57,7 @@ const Shops = ({ route }) => {
   return (
     <View  style={styles.body} >
          <ScrollView>
-        <Image  style={styles.image} source={{uri: imageUrl}} />
+         <Text style={styles.pageTitle}>Shops</Text>
       <View style={styles.container}>
         <TextInput
           placeholder="Shop Name"
@@ -77,11 +80,23 @@ const Shops = ({ route }) => {
         
         />
        </View>
+
+       <View style={styles.container}>
+
+        <AutoGrowingTextInput
+          placeholder="Description"
+          value={Description}
+          onChangeText={(text) => setDescription(text)}
+          style={{...styles.inputDescription, minHeight: 50, maxHeight: 500 }}
+          enableScrollToCaret ={true}
+        
+        />
+       </View>
        <View style={styles.container}>
         <TextInput
           placeholder="Contact Number"
           value={ContactNo}
-          onChangeText={(text) => setshopName(text)}
+          onChangeText={(text) => setContactNo(text)}
           keyboardType= "numeric"
           style={styles.input}
           multiline={true}
@@ -93,8 +108,9 @@ const Shops = ({ route }) => {
        <TouchableOpacity style={styles.button} onPress={AddShop}>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
+        <Image  style={styles.image} source={{uri: imageUrl}} />
        </View>
-       
+      
         </ScrollView>
       </View>
   )
@@ -210,16 +226,17 @@ const styles = StyleSheet.create({
   },
   
   image:{
-    width: "75%",
-    height: 239,
+    width: "80%",
+    height: 300,
     marginLeft: 40,
     marginRight: 40,
-    marginTop: 10,
+    marginTop: 5,
   
   },
   
   body:{
    flex:1,
+   backgroundColor: "#ffffff",
   
   
   },
@@ -233,6 +250,14 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
 
+  },
+
+  pageTitle:{
+    fontSize: 35,
+    paddingTop: 50, 
+    paddingLeft:150, 
+    color: "#633974",
+    fontWeight: 'bold',
   }
 
   });

@@ -1,10 +1,11 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, View, Text, Image } from "react-native";
-import Events from "../screens/Events";
-import Home from "../screens/Home";
-import Recipe from "../screens/Recipe";
-import Shops from "../screens/Shops";
-import Tips from "../screens/Tips";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { StyleSheet, View, Text, Image } from "react-native"
+import Events from "../screens/Events"
+import Home from "../screens/Home"
+import Recipe from "../screens/Recipe"
+import ShopList from "../screens/ShopList"
+import Shop from "../screens/Shop"
+import Tips from "../screens/Tips"
 
 const Tab = createBottomTabNavigator();
 
@@ -28,8 +29,8 @@ const tabs = [
     label: "TIPS",
   },
   {
-    name: "Shops",
-    component: Shops,
+    name: "Shop",
+    component: Shop,
     source: require("../assets/shop-icon.png"),
     label: "SHOPS",
   },
