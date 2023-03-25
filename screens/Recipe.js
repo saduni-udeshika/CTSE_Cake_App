@@ -148,9 +148,9 @@ const Recipe = () => {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
-      <View style={styles.container}>
+      <View style={styles.textAreaView}>
         <TextInput
-          style={styles.input}
+          style={styles.textAreacontainer}
           placeholder="Add your cake name"
           maxLength={MAX_LENGTH}
           placeholderTextColor="#aaaaaa"
