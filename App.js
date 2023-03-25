@@ -11,7 +11,7 @@ import UpdateRecipe from "./screens/UpdateRecipe";
 import EventsList from "./screens/EventsList";
 import NewEvent from "./screens/NewEvent";
 import ShopHelp from "./screens/ShopHelp";
-
+import EventHelp from "./screens/EventHelp";
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -30,6 +30,7 @@ export default function App() {
        <Stack.Screen name="ShopList" component={ShopList}/>
        <Stack.Screen name="NewShop" component={NewShop}/>
        <Stack.Screen name="ShopHelp" component={ShopHelp}/>
+       <Stack.Screen name="EventHelp" component={EventHelp}/>
 
        <Stack.Screen name="updateRecipe" component={UpdateRecipe} />
        <Stack.Screen name="NewEvent" component={NewEvent} />

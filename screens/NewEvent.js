@@ -56,6 +56,7 @@
       return (
         <View  style={styles.body} >
            <ScrollView>
+           <Text style={styles.pageTitle}>ADD EVENT</Text>
           <Image  style={styles.image} source={{uri: imageUrl}} />
         <View style={styles.container}>
           <TextInput
@@ -120,7 +121,7 @@
      
          <View >
          <TouchableOpacity style={styles.button} onPress={saveEvent}>
-            <Text style={styles.buttonText}>ADD EVENT</Text>
+            <Text style={styles.buttonText}>SAVE EVENT</Text>
           </TouchableOpacity>
           <View>
           <TouchableOpacity style={styles.cancel}
@@ -146,6 +147,13 @@
         },
         tipDescription: {
           marginTop: 5,
+        },
+        pageTitle:{
+          fontSize: 35,
+          paddingTop: 20, 
+          paddingLeft:120, 
+          color: "#633974",
+          fontWeight: 'bold',
         },
         deleteButton: {
           backgroundColor: 'red',
@@ -204,12 +212,12 @@
         button: {
           height: 50,
           borderRadius: 5,
-          backgroundColor: "#000000",
+          backgroundColor: "#633974",
           width: 300,
           alignItems: "center",
           justifyContent: "center",
           marginHorizontal: 60,
-          marginVertical: 50,
+          marginVertical: 10,
       
         },
         cancel: {
@@ -220,7 +228,7 @@
           alignItems: "center",
           justifyContent: "center",
           marginHorizontal: 60,
-          marginVertical: -40,
+          marginVertical: 0,
       
         },
         buttonText: {
@@ -261,7 +269,7 @@
       
       image:{
         width: "75%",
-        height: 239,
+        height: 200,
         marginLeft: 40,
         marginRight: 40,
         marginTop: 10,

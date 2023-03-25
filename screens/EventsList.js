@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { firebase } from "../config"
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { FontAwesome } from "@expo/vector-icons"
+import { ScrollView } from 'react-native-gesture-handler';
 let colours = ["#ff8e42", "#4F6384"];
 
 const EventsList = ({index}) => {
@@ -27,10 +28,29 @@ const EventsList = ({index}) => {
   const editEvent = (id) => {
     navigation.navigate('NewEvent', { id });
   };
+  const deleteEventAlert = (id) => {
+    Alert.alert('Delete Event', 'Do you want to delete this one?', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => {deleteEvent(id)}},
+    ]);
+  };  
 
   const deleteEvent = (id) => {
-    firebase.firestore().collection("events").doc(id).delete();
+    firebase.firestore().collection("events").doc(id).delete().then(() => {
+      alert("Deleted Event Successfully").catch((error) => {
+        alert(error)
+      })
+    })
   };
+
+
+  // const deleteEvent = (id) => {
+  //   firebase.firestore().collection("events").doc(id).delete();
+  // };
 // //  const deleteEvent = (id) => {
 // //     const dbRef = firebase.firestore().collection("events").doc(id).delete();
 // //       dbRef.delete().then((res) => {
@@ -66,16 +86,16 @@ const EventsList = ({index}) => {
 
   return (
     <View  >
-        
+        <ScrollView>
     <View style={styles.row}>
-      
+    <Text style={styles.pageTitle}>EVENTS LIST</Text>
       <FlatList
         data={events}
       
         renderItem={({ item }) => (
 
           
-          <View style={[styles.container, {backgroundColor: "#959595"}]}>
+          <View style={[styles.container, {backgroundColor: "#EDE3FF"}]}>
          
           <TouchableOpacity style={styles.eventItem} >
             <Text style={styles.eventTitle}>{item.name}</Text>
@@ -100,7 +120,7 @@ const EventsList = ({index}) => {
               name="trash-o"
               color="red"
               // onPress={() =>  deleteEvent(item.id)}
-              onPress={()=>deleteEvent(item.id)}
+              onPress={()=>deleteEventAlert(item.id)}
               style={styles.tipIcon}
             />
             
@@ -121,6 +141,7 @@ const EventsList = ({index}) => {
               style={styles.addBtnIcon}
             />
           </TouchableOpacity>
+          </ScrollView>
     </View>
   );
 };
@@ -170,17 +191,23 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 20,
       },
-
+      pageTitle:{
+        fontSize: 35,
+        paddingTop: 50, 
+        paddingLeft:100, 
+        color: "#633974",
+        fontWeight: 'bold',
+      },
       containers: {
         position: 'absolute',
         top: 0,
         right: 20,
       },
       addBtn: {
-        backgroundColor: '#000000',
+        backgroundColor: '#633974',
         borderRadius: 40,
-        width: 80,
-        height: 80,
+        width: 70,
+        height: 70,
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -194,6 +221,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#e5e5e5",
         padding: 15,
         borderRadius: 15,
+        borderColor: '#D8BFD8',
         margin: 5,
         marginHorizontal: 10,
         flexDirection: "row",
@@ -243,7 +271,7 @@ const styles = StyleSheet.create({
       },
       tipIcon: {
         marginTop:  30,
-        fontSize: 40,
+        fontSize: 30,
         marginLeft: 14,
         marginHorizontal: 30,
         

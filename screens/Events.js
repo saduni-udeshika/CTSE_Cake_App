@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { SliderBox } from "react-native-image-slider-box";
+import { FontAwesome } from "@expo/vector-icons"
+
 
 export default class Events extends Component {
 
@@ -21,9 +23,19 @@ export default class Events extends Component {
   }
 
   render() {
-    // const navigation = useNavigation();
-    return (
+  const { navigate } = this.props.navigation;
+      return (
       <View style={styles.container}>
+        <TouchableOpacity style={styles.help} >
+             
+             <FontAwesome
+               name="calendar"
+               color="black"
+               onPress={() => navigate('EventHelp')}
+               style={styles.help}
+             />
+           </TouchableOpacity>
+        <Text style={styles.pageTitle}>Publish Your Events Here</Text>
         <SliderBox
           images={this.state.images}
           sliderBoxHeight={400}
@@ -34,10 +46,9 @@ export default class Events extends Component {
 
               
   <View >
-        <Button
-         title="Publish Your Events Here !"
-        //  onPress={() => navigation.navigate('TipsList')}
-       />
+  <TouchableOpacity style={styles.button} onPress={() => navigate('EventsList')}>
+          <Text style={styles.buttonText}>PROCEED !</Text>
+        </TouchableOpacity>
       </View>
       </View>
 
@@ -49,7 +60,35 @@ export default class Events extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  }
+  },
+
+  help:{
+    marginTop:  5,
+    marginLeft: 10,
+    fontSize: 40,
+  },
+  button: {
+    height: 50,
+    borderRadius: 5,
+    backgroundColor: "#633974",
+    width: 300,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 50,
+    marginVertical: 10,
+
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 20,
+  },
+  pageTitle:{
+    fontSize: 25,
+    paddingTop: 30, 
+    paddingLeft:50, 
+    color: "#633974",
+    fontWeight: 'bold',
+  },
 });
 
 
@@ -66,7 +105,7 @@ const styles = StyleSheet.create({
 //     <View >
 //      <Button
 //        title="Go to next screen"
-//        onPress={() => navigation.navigate('TipsList')}
+//        onPress={() => navigation.navigate('EventsList')}
 //      />
 //     </View>
    
