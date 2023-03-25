@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { FontAwesome } from "@expo/vector-icons"
 let colours = ["#ff8e42", "#ffffff"];
 
+const imageUrl = "https://i.pinimg.com/originals/0e/ce/b0/0eceb037854c13e9dbcd61385461bc26.png";
+
 const ShopList = ({index}) => {
   const navigation = useNavigation();
   const [Shops, setShops] = useState([]);
@@ -66,10 +68,11 @@ const ShopList = ({index}) => {
   return (
     <View  style={styles.body}  >
           <ScrollView>
+          <Image  style={styles.image} source={{uri: imageUrl}} />
          <Text style={styles.pageTitle}>Shop List</Text>
 
          <TouchableOpacity   style={styles.addBtn} onPress={() => navigation.navigate('NewShop')}>
-          <Image  style={styles.addIconImage} source={require("../assets/addIcon.png")} onPress={() => navigation.navigate('NewTip')}/>
+          <Image  style={styles.addIconImage} source={require("../assets/addIcon.png")} onPress={() => navigation.navigate('NewShop')}/>
           </TouchableOpacity>
        
     <View style={styles.row}>
