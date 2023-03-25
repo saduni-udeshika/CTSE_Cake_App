@@ -10,6 +10,7 @@ import NewShop from "./screens/NewShop";
 import UpdateRecipe from "./screens/UpdateRecipe";
 import EventsList from "./screens/EventsList";
 import NewEvent from "./screens/NewEvent";
+import ShopHelp from "./screens/ShopHelp";
 
 const Stack = createStackNavigator()
 
@@ -28,6 +29,7 @@ export default function App() {
        <Stack.Screen name="Shop" component={Shop} />
        <Stack.Screen name="ShopList" component={ShopList}/>
        <Stack.Screen name="NewShop" component={NewShop}/>
+       <Stack.Screen name="ShopHelp" component={ShopHelp}/>
 
        <Stack.Screen name="updateRecipe" component={UpdateRecipe} />
        <Stack.Screen name="NewEvent" component={NewEvent} />

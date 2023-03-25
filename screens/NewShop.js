@@ -14,8 +14,8 @@ const Shops = ({ route }) => {
     const [shopName, setshopName] = useState('');
     const [Address, setAddress] = useState('');
     const [ContactNo, setContactNo] = useState('');
+    const [Description, setDescription] = useState('');
     
-
 
     useEffect(() => {
       if (route.params?.id) {
@@ -26,6 +26,7 @@ const Shops = ({ route }) => {
             setshopName(shop.shopName);
             setAddress(shop.Address);
             setContactNo(shop.ContactNo);
+            setDescription(shop.Description);
           });
       }
     }, [route.params?.id]);
@@ -36,12 +37,14 @@ const Shops = ({ route }) => {
           shopName,
           Address,
           ContactNo,
+          Description,
         });
       } else {
         firebase.firestore().collection("shop").add({
           shopName,
           Address,
           ContactNo,
+          Description,
         });
       }
       navigation.goBack();
@@ -72,6 +75,18 @@ const Shops = ({ route }) => {
           placeholder="Address"
           value={Address}
           onChangeText={(text) => setAddress(text)}
+          style={{...styles.inputDescription, minHeight: 50, maxHeight: 500 }}
+          enableScrollToCaret ={true}
+        
+        />
+       </View>
+
+       <View style={styles.container}>
+
+        <AutoGrowingTextInput
+          placeholder="Description"
+          value={Description}
+          onChangeText={(text) => setDescription(text)}
           style={{...styles.inputDescription, minHeight: 50, maxHeight: 500 }}
           enableScrollToCaret ={true}
         
@@ -221,6 +236,7 @@ const styles = StyleSheet.create({
   
   body:{
    flex:1,
+   backgroundColor: "#ffffff",
   
   
   },
