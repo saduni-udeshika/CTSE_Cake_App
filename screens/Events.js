@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { SliderBox } from "react-native-image-slider-box";
+import { FontAwesome } from "@expo/vector-icons"
+
 
 export default class Events extends Component {
 
@@ -24,6 +26,15 @@ export default class Events extends Component {
   const { navigate } = this.props.navigation;
       return (
       <View style={styles.container}>
+        <TouchableOpacity style={styles.help} >
+             
+             <FontAwesome
+               name="calendar"
+               color="black"
+               onPress={() => navigate('EventHelp')}
+               style={styles.help}
+             />
+           </TouchableOpacity>
         <Text style={styles.pageTitle}>Publish Your Events Here</Text>
         <SliderBox
           images={this.state.images}
@@ -36,7 +47,7 @@ export default class Events extends Component {
               
   <View >
   <TouchableOpacity style={styles.button} onPress={() => navigate('EventsList')}>
-          <Text style={styles.buttonText}>Continue !</Text>
+          <Text style={styles.buttonText}>PROCEED !</Text>
         </TouchableOpacity>
       </View>
       </View>
@@ -49,6 +60,12 @@ export default class Events extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+
+  help:{
+    marginTop:  5,
+    marginLeft: 10,
+    fontSize: 40,
   },
   button: {
     height: 50,
