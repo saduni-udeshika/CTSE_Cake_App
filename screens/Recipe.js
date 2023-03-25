@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import * as ImagePicker from "expo-image-picker"
 
+const MAX_LENGTH = 25;
 const Recipe = () => {
   const [recipies, setRecipies] = useState([])
   const [addData, setAddData] = useState("")
@@ -132,9 +133,6 @@ const Recipe = () => {
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={styles.recipeContainer}>
-        <TouchableOpacity style={styles.selectButton} onPress={pickImage}>
-          <Text style={styles.buttonText}>Pick an Image</Text>
-        </TouchableOpacity>
         <View style={styles.imageContainer}>
           {image && 
             <Image
@@ -142,15 +140,19 @@ const Recipe = () => {
               style={{ width: 100, height: 100 }}
             />
           }
+          <TouchableOpacity style={styles.selectButton} onPress={pickImage}>
+          <Text style={styles.buttonText}>Pick an Image</Text>
+        </TouchableOpacity>
           <TouchableOpacity style={styles.uploadButton} onPress={uploadImage}>
             <Text style={styles.buttonText}>Upload Image</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
-      <View style={styles.container}>
+      <View style={styles.textAreaView}>
         <TextInput
-          style={styles.input}
+          style={styles.textAreacontainer}
           placeholder="Add your cake name"
+          maxLength={MAX_LENGTH}
           placeholderTextColor="#aaaaaa"
           onChangeText={(heading) => setAddData(heading)}
           value={addData}
