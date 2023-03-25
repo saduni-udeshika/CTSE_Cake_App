@@ -7,6 +7,7 @@ import NewTip from './screens/NewTip';
 import UpdateRecipe from "./screens/UpdateRecipe";
 import EventsList from "./screens/EventsList";
 import NewEvent from "./screens/NewEvent";
+import Tip from "./screens/Tip";
 
 const Stack = createStackNavigator()
 
@@ -25,6 +26,7 @@ export default function App() {
        <Stack.Screen name="updateRecipe" component={UpdateRecipe} />
        <Stack.Screen name="NewEvent" component={NewEvent} />
        <Stack.Screen name="EventsList" component={EventsList} />
+       <Stack.Screen name="Tip" component={Tip} />
      </Stack.Navigator>
    
     </NavigationContainer>

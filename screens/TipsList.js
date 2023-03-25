@@ -402,6 +402,10 @@ const TipsList = ({index}) => {
     navigation.navigate('NewTip', { id });
   };
 
+  const getTip = (id) => {
+    navigation.navigate('Tip', { id });
+  }
+
   //alert box
   const deleteTipAlert = (id) => {
     Alert.alert('Delete Tip', 'Do you want to delete this Idea?', [
@@ -456,9 +460,8 @@ const TipsList = ({index}) => {
          
           <View style={[styles.container, {backgroundColor: random()}]}>
          
-          <TouchableOpacity style={styles.tipItem} >
+          <TouchableOpacity style={styles.tipItem}  onPress={() =>  getTip(item.id)}>
             <Text style={styles.tipTitle}>{item.title}</Text>
-            <Text style={styles.tipDescription}>{item.description}</Text>
             <View style={styles.iconContainer}>
             <TouchableOpacity >
             

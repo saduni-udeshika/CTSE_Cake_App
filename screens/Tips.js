@@ -2,6 +2,7 @@
 import { View, Text, Button, Image, StyleSheet,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Tips = () => {
 
@@ -10,7 +11,8 @@ const Tips = () => {
    
     
     <View style={styles.container} >
-      <Image source={require("../assets/startupIdea.gif")} resizeMode="cover" style={styles.image} />  
+      <ScrollView>
+      <Image source={require("../assets/tips.gif")} resizeMode="cover" style={styles.image} />  
 
       <View>
        
@@ -23,6 +25,7 @@ const Tips = () => {
     
      
     </View>
+    </ScrollView>
     </View>
     
    
@@ -39,11 +42,11 @@ const styles = StyleSheet.create({
    
   },
   image:{
-    width: "75%",
+    width: "100%",
     height: 500,
-    marginLeft: 50,
-    marginRight: 60,
-    marginTop: 50,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
   
   },
   button: {
