@@ -6,9 +6,49 @@ import Recipe from "../screens/Recipe"
 import ShopList from "../screens/ShopList"
 import Shop from "../screens/Shop"
 import Tips from "../screens/Tips"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StyleSheet, View, Text, Image } from "react-native";
+import Events from "../screens/Events";
+import Home from "../screens/Home";
+import Recipe from "../screens/Recipe";
+import Shops from "../screens/Shops";
+import Tips from "../screens/Tips";
 
+const Tab = createBottomTabNavigator();
 
-const Tab = createBottomTabNavigator()
+const tabs = [
+  {
+    name: "Home",
+    component: Home,
+    source: require("../assets/home-icon.png"),
+    label: "HOME",
+  },
+  {
+    name: "Recipe",
+    component: Recipe,
+    source: require("../assets/recipes-icon.png"),
+    label: "RECIPIES",
+  },
+  {
+    name: "Tips",
+    component: Tips,
+    source: require("../assets/tips-icon.png"),
+    label: "TIPS",
+  },
+  {
+    name: "Shops",
+    component: Shops,
+    source: require("../assets/shop-icon.png"),
+    label: "SHOPS",
+  },
+  {
+    name: "Events",
+    component: Events,
+    source: require("../assets/event-icon.png"),
+    label: "EVENTS",
+  },
+];
+
 const Tabs = () => {
   return (
     <Tab.Navigator
@@ -21,165 +61,52 @@ const Tabs = () => {
           right: 20,
           elevation: 0,
           backgroundColor: "white",
-          borderRadious: 15,
+          borderRadius: 15,
           height: 90,
-          ...StyleSheet.shadow,
+          ...style.shadow,
         },
       }}
     >
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 2,
-              }}
-            >
-              <Image
-                // source={require("../assets/home-icon.jpg")}
-                resizeMode="contain"
+      {tabs.map(({ name, component: Component, source, label }) => (
+        <Tab.Screen
+          key={name}
+          name={name}
+          component={Component}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View
                 style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  top: 2,
                 }}
-              />
-              <Text
-                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
               >
-                HOME
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Recipe"
-        component={Recipe}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 2,
-              }}
-            >
-              <Image
-                //   source={require("../assets/home-icon.jpg")}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
-              >
-                RECIPIES
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Tips"
-        component={Tips}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 2,
-              }}
-            >
-              <Image
-                //   source={require("../assets/home-icon.jpg")}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
-              >
-                TIPS
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Shop"
-        component={Shop}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 2,
-              }}
-            >
-              <Image
-                //   source={require("../assets/home-icon.jpg")}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
-              >
-                SHOPS
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Events"
-        component={Events}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 2,
-              }}
-            >
-              <Image
-                //   source={require("../assets/home-icon.jpg")}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
-              >
-                EVENTS
-              </Text>
-            </View>
-          ),
-        }}
-      />
+                <Image
+                source={source}
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    height: 25,
+                    tintColor: focused ? "#e32f45" : "#633974",
+                  }}
+                />
+                <Text
+                  style={{
+                    color: focused ? "#e32f45" : "#633974",
+                    fontSize: 12,
+                  }}
+                >
+                  {label}
+                </Text>
+              </View>
+            ),
+          }}
+        />
+      ))}
     </Tab.Navigator>
-  )
-}
+  );
+};
+
 const style = StyleSheet.create({
   shadow: {
     shadowColor: "#7F5DF0",
@@ -191,5 +118,6 @@ const style = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5, //works on ios
   },
-})
-export default Tabs
+});
+
+export default Tabs;

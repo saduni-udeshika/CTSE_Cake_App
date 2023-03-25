@@ -373,12 +373,12 @@ export default TipsList
 
 
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, FlatList, StyleSheet, TouchableOpacity, Text, Animated } from 'react-native';
+import { View, TextInput, Button, FlatList, StyleSheet, TouchableOpacity, Text, Animated, ScrollView, Alert,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { firebase } from "../config"
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { FontAwesome } from "@expo/vector-icons"
-let colours = ["#ff8e42", "#4F6384"];
+let colours = ["#ff8e42", "white"];
 
 const TipsList = ({index}) => {
   const navigation = useNavigation();
@@ -402,8 +402,24 @@ const TipsList = ({index}) => {
     navigation.navigate('NewTip', { id });
   };
 
+  //alert box
+  const deleteTipAlert = (id) => {
+    Alert.alert('Delete Tip', 'Do you want to delete this Idea?', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => {deleteTip(id)}},
+    ]);
+  };  
+
   const deleteTip = (id) => {
-    firebase.firestore().collection("tips").doc(id).delete();
+    firebase.firestore().collection("tips").doc(id).delete().then(() => {
+      alert("Deleted tip Successfully").catch((error) => {
+        alert(error)
+      })
+    })
   };
 
 
@@ -422,19 +438,22 @@ const TipsList = ({index}) => {
 
   return (
     <View  >
-          <TouchableOpacity  style={styles.addBtn} onPress={() => navigation.navigate('NewTip')}>
-          <Button title="Add Tip" onPress={() => navigation.navigate('NewTip')} />
-           
+         
+      <View style={styles.header}>
+         <ScrollView>
+          <Text style={styles.pageTitle}>Startup Tips</Text>
+          <TouchableOpacity   style={styles.addBtn} onPress={() => navigation.navigate('NewTip')}>
+          <Image  style={styles.addIconImage} source={require("../assets/addIcon.png")} onPress={() => navigation.navigate('NewTip')}/>
           </TouchableOpacity>
-       
+          <Image  style={styles.image}  source={require("../assets/idea.gif")}  />
+     <View style={styles.body}>
     <View style={styles.row}>
       
       <FlatList
         data={tips}
-      
+    
         renderItem={({ item }) => (
-
-          
+         
           <View style={[styles.container, {backgroundColor: random()}]}>
          
           <TouchableOpacity style={styles.tipItem} >
@@ -446,7 +465,7 @@ const TipsList = ({index}) => {
               <FontAwesome
                 name="trash-o"
                 color="red"
-                onPress={() =>  deleteTip(item.id)}
+                onPress={() =>  deleteTipAlert(item.id)}
                 style={styles.tipIcon}
               />
               
@@ -454,7 +473,7 @@ const TipsList = ({index}) => {
             <TouchableOpacity >
              
               <FontAwesome
-                name="trash-o"
+                name="pencil"
                 color="green"
                 onPress={() => editTip(item.id)}
                 style={styles.tipIcon}
@@ -470,6 +489,9 @@ const TipsList = ({index}) => {
       
      
     </View>
+    </View>  
+    </ScrollView>
+    </View>
     </View>
   );
 };
@@ -480,6 +502,7 @@ const styles = StyleSheet.create({
     tipTitle: {
         fontSize: 20,
         fontWeight: 'bold',
+        
       },
       tipDescription: {
         marginTop: 5,
@@ -504,7 +527,7 @@ const styles = StyleSheet.create({
         color: 'white',
       },
       container: {
-        padding: 20,
+        paddingTop: 50,
       },
       input: {
         borderWidth: 1,
@@ -519,7 +542,7 @@ const styles = StyleSheet.create({
         right: 20,
       },
       addBtn: {
-        backgroundColor: '#007aff',
+        
         borderRadius: 40,
         width: 80,
         height: 80,
@@ -540,6 +563,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         flexDirection: "row",
         alignItems: "center",
+        borderColor: '#D8BFD8', 
+        borderWidth: 2,
       },
       innerContainer: {
         alignItems: "center",
@@ -585,7 +610,7 @@ const styles = StyleSheet.create({
       },
       tipIcon: {
         marginTop:  30,
-        fontSize: 40,
+        fontSize: 30,
         marginLeft: 14,
         marginHorizontal: 30,
         
@@ -596,7 +621,6 @@ const styles = StyleSheet.create({
       text: {
         fontSize: 18,
         lineHeight: 33,
-        fontFamily: 'Helvetica Neue',
         color: "#333333",
         padding: 16,
         paddingTop: 16,
@@ -613,7 +637,6 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 20,
       lineHeight: 22,
-      fontFamily: 'Helvetica Neue',
       height: 80,
       padding: 16,
       backgroundColor: 'white',
@@ -621,7 +644,7 @@ const styles = StyleSheet.create({
     
     image:{
       width: "75%",
-      height: 239,
+      height: 150,
       marginLeft: 40,
       marginRight: 40,
       marginTop: 10,
@@ -630,6 +653,7 @@ const styles = StyleSheet.create({
     
     body:{
      flex:1,
+     paddingTop:50,
     },
     
 
@@ -649,6 +673,30 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
   },
+
+  
+
+   pageTitle:{
+     fontSize: 30,
+     paddingTop: 50, 
+     paddingLeft:100, 
+     color: "#633974",
+     fontWeight: 'bold',
+     
+      
+   },
+   header:{
+    backgroundColor:'white'
+  },
+  addIconImage:{
+      width:"75%" ,
+      height: 65,
+      marginLeft: 650,
+      marginRight: 10,
+     
+  },
     });
+
+   
     
 export default TipsList
