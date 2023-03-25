@@ -84,8 +84,9 @@ const ShopList = ({index}) => {
          
           <TouchableOpacity style={styles.tipItem} >
             <Text style={styles.tipTitle}>{item.shopName}</Text>
-            <Text style={styles.tipDescription}>{item.Address}</Text>
-            <Text style={styles.tipDescription}>{item.ContactNo}</Text>
+            <Text style={styles.address}>{item.Address}</Text>
+            <Text style={styles.number}>{item.ContactNo}</Text>
+            <Text style={styles.tipDescription}>{item.Description}</Text>
             <View style={styles.iconContainer}>
             <TouchableOpacity >
             
@@ -125,11 +126,29 @@ const ShopList = ({index}) => {
 
 const styles = StyleSheet.create({
     tipTitle: {
+        paddingLeft: 75,
         fontSize: 20,
         fontWeight: 'bold',
       },
+      address: {
+        paddingTop: 15,
+        fontSize: 15,
+        paddingLeft: 15,
+       
+      },
+
+      number: {
+        paddingTop: 5,
+        fontSize: 15,
+        paddingLeft: 15,
+        fontWeight: 'bold',
+       
+      },
       tipDescription: {
+        fontSize: 15,
         marginTop: 5,
+        paddingLeft: 15,
+        fontFamily: 'Ariel',
       },
       deleteButton: {
         backgroundColor: 'red',
@@ -234,7 +253,7 @@ const styles = StyleSheet.create({
       },
       tipIcon: {
         marginTop:  30,
-        fontSize: 40,
+        fontSize: 25,
         marginLeft: 14,
         marginHorizontal: 30,
         
